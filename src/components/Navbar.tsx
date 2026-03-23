@@ -7,7 +7,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
-  const [activeLink, setActiveLink] = useState(false)
+//   const [activeLink, setActiveLink] = useState(false)
 
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
   const navRef = useRef<HTMLDivElement>(null);
