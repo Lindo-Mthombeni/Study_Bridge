@@ -1,1 +1,42 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-primary: #131936;
+  --color-secondary: #85a3f7;
+
+  --font-main: Inter, Aria, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-main;
+  }
+}
+
+@layer components {
+  /** Navbar Section */
+  .start-study-btn {
+    @apply p-[.8em] text-[.7rem] rounded-full bg-secondary font-black
+           text-white hover:brightness-115 transition-all duration-500
+           ease-out;
+  }
+
+  .nav-links {
+    @apply flex relative gap-1;
+
+    & .link-active-slide {
+      @apply absolute bottom-0 h-1 bg-secondary transition-all duration-300 
+           rounded-full;
+
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    & button {
+      @apply p-1 rounded-md text-[1.20em] pb-2;
+
+      &:hover {
+        @apply bg-gray-100;
+      }
+    }
+  }
+}
