@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Sans Outline';
+  font-family: 'Avalon';
   src:url('./assets/Fonts/Avalon.ttf');
   font-weight: 900;
 }
@@ -35,7 +35,7 @@
 
   --font-main: Montserrat;
   --font-second: "Source Sans 3";
-  --font-hollow: 'Sans Outline';
+  --font-hollow: 'Avalon';
 }
 
 

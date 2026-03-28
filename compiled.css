@@ -36,7 +36,7 @@
     --text-highlight: 2.3rem;
     --font-main: Montserrat;
     --font-second: "Source Sans 3";
-    --font-hollow: 'Sans Outline';
+    --font-hollow: 'Avalon';
   }
 }
 @layer base {
@@ -369,7 +369,7 @@
   }
 }
 @font-face {
-  font-family: 'Sans Outline';
+  font-family: 'Avalon';
   src: url('./assets/Fonts/Avalon.ttf');
   font-weight: 900;
 }
