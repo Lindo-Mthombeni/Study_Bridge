@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Background } from './components/Background.tsx'
 import { Navbar } from './components/Navbar.tsx'
 import { Hero } from './components/Hero.tsx'
 import './App.css'
@@ -8,7 +9,8 @@ const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home')
 
   return (
-    <div>
+    <div className='flex flex-col min-h-screen max-w-screen overflow-hidden'>
+      <Background />
       <Navbar onNavigate={setActiveSection} active={activeSection}/>
       <Hero />
     </div>

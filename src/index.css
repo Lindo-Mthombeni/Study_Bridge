@@ -1,42 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 @import 'tailwindcss';
 
-@theme {
-  --color-primary: #131936;
-  --color-secondary: #85a3f7;
-
-  --font-main: Inter, Aria, sans-serif;
+@font-face {
+  font-family: 'Sans Outline';
+  src:url('./assets/Fonts/Avalon.ttf');
+  font-weight: 900;
 }
+
+:root {
+  font: 20px;
+  line-height: 1.6;
+}
+
+
+@theme {
+
+  --color-primary: #030920;
+  --color-secondary: #30364c;
+  --color-secondary-light: hsl(227, 23%,80%);
+  --color-background: #e8efff;
+  --color-accent: hsl(45, 80%, 50%);
+  --color-main: #e9e9e9;
+
+
+  --spacing-sm: .3rem;
+  --spacing-md: 1rem;
+
+
+  --text-sm: .75rem;
+  --text-head: 2rem;
+  --text-related: 1.3rem;
+  --text-highlight: 2.3rem;
+
+
+  --font-main: Montserrat;
+  --font-second: "Source Sans 3";
+  --font-hollow: 'Sans Outline';
+}
+
 
 @layer base {
   body {
-    @apply font-main;
+    @apply font-main overflow-hidden bg-background text-primary;
   }
 }
 
 @layer components {
+
+
   /** Navbar Section */
-  .start-study-btn {
-    @apply p-[.8em] text-[.7rem] rounded-full bg-secondary font-black
-           text-white hover:brightness-115 transition-all duration-500
-           ease-out;
-  }
+  .nav-bar {
+    @apply uppercase text-[.9rem] gap-1 flex h-20 items-center justify-between
+           py-2 min-w-100 md:justify-around;
 
-  .nav-links {
-    @apply flex relative gap-1;
-
-    & .link-active-slide {
-      @apply absolute bottom-0 h-1 bg-secondary transition-all duration-300 
-           rounded-full;
-
-      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
-
-    & button {
-      @apply p-1 rounded-md text-[1.20em] pb-2;
+    & .nav-menu {
+      @apply p-2 ml-1 justify-self-start rounded-md transition-all duration-200 ease-out
+             font-second;
 
       &:hover {
-        @apply bg-gray-100;
+        @apply bg-black/3 backdrop-blur-xs ;
+      }
+
+      & .nav-menu-btn {
+        @apply absolute transition-all duration-200 ease-out;
       }
     }
+
+    & .start-study-btn {
+      @apply p-[.6em] text-[min(3vw,25px)] rounded-full font-black
+             hover:brightness-115 transition-[filter] duration-500
+             ease-out m-0.5 border-2 border-primary font-main cursor-pointer;
+    }
+
+    & .nav-links {
+      @apply hidden md:flex relative justify-evenly gap-3 w-[min(40vw,400px)]
+             lg:mr-10;
+
+      & .link-active-slide {
+        @apply absolute bottom-0 h-1 bg-primary transition-all duration-300 
+           rounded-full -translate-x-1/2 z-2;
+
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+
+      & button {
+        @apply flex p-1 rounded-md text-[min(3vw,1.7em)] pb-2 text-center 
+             items-center whitespace-nowrap;
+
+        &:hover {
+          @apply bg-black/2 backdrop-blur-sm; 
+        }
+      }
+    }
+  }
+
+  .banner {
+    @apply h-[min(170vw,1300px)] w-[min(50vw,900px)] bg-secondary absolute 
+           rounded-b-full -top-100 ml-2 flex justify-center select-none -z-10
+           transition-all duration-500 ease-out;
+  }
+
+  .aside-content {
+    @apply w-[clamp(300px,70vw,600px)] rounded-[50px] absolute 
+           -right-100 mt-10 transition-all
+           duration-700 ease-out bg-linear-to-br from-gray-700/45 from-40% to-primary/5
+           backdrop-blur-lg shadow-[5px_5px_5px_#03092020];
+
+
+    background-image: url("./assets/texture.svg");
   }
 }
