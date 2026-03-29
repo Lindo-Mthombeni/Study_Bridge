@@ -95,7 +95,7 @@
   }
 
   .banner {
-    @apply h-[min(170vw,1300px)] w-[min(50vw,900px)] bg-secondary absolute 
+    @apply w-[min(50vw,900px)] bg-secondary absolute 
            rounded-b-full -top-100 ml-2 flex justify-center select-none -z-10
            transition-all duration-500 ease-out;
   }

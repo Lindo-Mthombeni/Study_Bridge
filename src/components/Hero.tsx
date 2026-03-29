@@ -19,12 +19,12 @@ export const Hero: React.FC = () => {
       }, 300)
     }
   }, [])
-
+/** 1150px  140vw*/
   return (
     <section className='overflow-clip'>
       <div
         className={`banner ${
-          animate ? 'h-[min(230vw,1200px)]' : 'h-[min(170vw,1200px)]'
+          animate ? 'h-[clamp(1150px,145vw,1300px)]' : 'h-[min(170vw,1200px)]'
         }`}
       >
         <img
