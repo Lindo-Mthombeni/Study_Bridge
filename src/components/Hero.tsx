@@ -23,7 +23,9 @@ export const Hero: React.FC = () => {
   return (
     <section className='overflow-clip'>
       <div
-        className={`banner ${ animate ? 'h-[min(230vw,1200px)]': 'h-[min(170vw,1200px)]' }`}
+        className={`banner ${
+          animate ? 'h-[min(230vw,1200px)]' : 'h-[min(170vw,1200px)]'
+        }`}
       >
         <img
           src={Logo}
@@ -33,15 +35,23 @@ export const Hero: React.FC = () => {
         />
       </div>
       <aside
-        className={`aside-content ${animate ? 'opacity-100 -translate-x-160' : 'translate-x-30'}`}
+        className={`aside-content ${
+          animate
+            ? 'opacity-100 -translate-x-[125vw] sm:-translate-x-[95vw] sm:bg-blue-500 md:-translate-x-[80vw] md:bg-green-300 lg:-translate-x-[55vw] lg:bg-red-700 xl:-translate-x-[45vw] xl:bg-amber-600'
+            : 'translate-x-30'
+        }`}
       >
         <div className='flex flex-col mb-7'>
-          <h3 className='p-[24px_24px_0_24px] text-head font-black
-                       text-accent'>
+          <h3
+            className='p-[24px_24px_0_24px] text-head font-black
+                       text-accent'
+          >
             <span className='font-hollow text-highlight'>Free</span> CAPS
             LEARNING
           </h3>
-          <p className='font-extrabold text-related  pl-6'>Platform for SA Students</p>
+          <p className='font-extrabold text-related  pl-6'>
+            Platform for SA Students
+          </p>
         </div>
         <div className='text-main p-6 pt-0 font-semibold'>
           Access study notes, practice quizzes, and past exam papers aligned
