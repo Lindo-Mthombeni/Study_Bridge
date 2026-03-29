@@ -203,12 +203,6 @@
   .inset-0 {
     inset: calc(var(--spacing) * 0);
   }
-  .-right-100 {
-    right: calc(var(--spacing) * -100);
-  }
-  .right-20 {
-    right: calc(var(--spacing) * 20);
-  }
   .bottom-\[clamp\(30px\,7vw\,50\%\)\] {
     bottom: clamp(30px, 7vw, 50%);
   }
@@ -256,6 +250,14 @@
   }
   .grow {
     flex-grow: 1;
+  }
+  .translate-x-30 {
+    --tw-translate-x: calc(var(--spacing) * 30);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .translate-x-50 {
+    --tw-translate-x: calc(var(--spacing) * 50);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .scale-50 {
     --tw-scale-x: 50%;
@@ -356,16 +358,6 @@
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .md\:right-10 {
-    @media (width >= 48rem) {
-      right: calc(var(--spacing) * 10);
-    }
-  }
-  .lg\:right-35 {
-    @media (width >= 64rem) {
-      right: calc(var(--spacing) * 35);
-    }
   }
 }
 @font-face {
@@ -532,7 +524,7 @@
   }
   .aside-content {
     position: absolute;
-    right: calc(var(--spacing) * -100);
+    right: calc(var(--spacing) * -150);
     margin-top: calc(var(--spacing) * 10);
     width: clamp(300px, 70vw, 600px);
     border-radius: 50px;
@@ -559,6 +551,21 @@
     transition-timing-function: var(--ease-out);
     background-image: url("./assets/texture.svg");
   }
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
 }
 @property --tw-scale-x {
   syntax: "*";
@@ -681,21 +688,6 @@
   inherits: false;
   initial-value: solid;
 }
-@property --tw-translate-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-gradient-position {
   syntax: "*";
   inherits: false;
@@ -806,6 +798,9 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
@@ -835,9 +830,6 @@
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
       --tw-border-style: solid;
-      --tw-translate-x: 0;
-      --tw-translate-y: 0;
-      --tw-translate-z: 0;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
       --tw-gradient-via: #0000;
