@@ -37,7 +37,7 @@ export const Hero: React.FC = () => {
       <aside
         className={`aside-content ${
           animate
-            ? 'opacity-100 -translate-x-[125vw] sm:-translate-x-[95vw] sm:bg-blue-500 md:-translate-x-[80vw] md:bg-green-300 lg:-translate-x-[55vw] lg:bg-red-700 xl:-translate-x-[45vw] xl:bg-amber-600'
+            ? 'opacity-100 -translate-x-[55vw] sm:-translate-x-[55vw] sm:bg-blue-500 md:-translate-x-[60vw] md:bg-green-300 lg:-translate-x-[55vw] lg:bg-red-700 xl:-translate-x-[55vw] xl:bg-amber-600'
             : 'translate-x-30'
         }`}
       >

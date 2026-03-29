@@ -102,7 +102,7 @@
 
   .aside-content {
     @apply w-[clamp(300px,70vw,600px)] rounded-[50px] absolute 
-           -right-150 mt-10 transition-all
+           -right-[50vw] mt-10 transition-all
            duration-700 ease-out bg-linear-to-br from-gray-700/45 from-40% to-primary/5
            backdrop-blur-lg shadow-[5px_5px_5px_#03092020];
 
