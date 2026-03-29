@@ -16,7 +16,7 @@ export const Hero: React.FC = () => {
       sessionStorage.setItem('animated', 'true')
       setTimeout(() => {
         setAnimate(true)
-      }, 650)
+      }, 1500)
     }
   }, [])
 
