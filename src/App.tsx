@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home')
 
   return (
-    <div className='flex flex-col min-h-screen max-w-screen overflow-hidden'>
+    <div className='flex flex-col min-h-screen max-w-screen overflow-clip'>
       <Background />
       <Navbar onNavigate={setActiveSection} active={activeSection}/>
       <Hero />
