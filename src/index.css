@@ -41,7 +41,7 @@
 
 @layer base {
   body {
-    @apply font-main overflow-hidden bg-background text-primary;
+    @apply font-main relative overflow-hidden bg-background text-primary;
   }
 }
 

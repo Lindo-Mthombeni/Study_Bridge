@@ -379,6 +379,7 @@
 }
 @layer base {
   body {
+    position: relative;
     overflow: hidden;
     background-color: var(--color-background);
     font-family: var(--font-main);
