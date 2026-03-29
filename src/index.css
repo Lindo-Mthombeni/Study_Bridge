@@ -50,7 +50,7 @@
 
   /** Navbar Section */
   .nav-bar {
-    @apply uppercase text-[.9rem] gap-1 flex h-20 items-center justify-between
+    @apply uppercase text-[.9rem] gap-1 flex h-[min(15vw,100px)] items-center justify-between
            py-2 min-w-100 md:justify-around;
 
     & .nav-menu {
