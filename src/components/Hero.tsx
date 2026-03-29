@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   }, [])
 
   return (
-    <section className='overflow-hidden'>
+    <section className='overflow-clip'>
       <div
         className={`banner ${ animate ? 'h-[min(230vw,1200px)]': 'h-[min(170vw,1200px)]' }`}
       >
@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
         />
       </div>
       <aside
-        className={`aside-content ${animate ? 'opacity-100 translate-x-50' : 'translate-x-30'}`}
+        className={`aside-content ${animate ? 'opacity-100 -translate-x-160' : 'translate-x-30'}`}
       >
         <div className='flex flex-col mb-7'>
           <h3 className='p-[24px_24px_0_24px] text-head font-black
