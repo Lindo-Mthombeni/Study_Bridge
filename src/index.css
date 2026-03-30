@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: 'Avalon';
-  src:url('./assets/Fonts/Avalon.ttf');
+  src: url('./assets/Fonts/Avalon.ttf');
   font-weight: 900;
 }
 
@@ -12,32 +12,57 @@
   line-height: 1.6;
 }
 
-
 @theme {
-
   --color-primary: #030920;
   --color-secondary: #30364c;
-  --color-secondary-light: hsl(227, 23%,80%);
+  --color-secondary-light: hsl(227, 23%, 80%);
   --color-background: #e8efff;
   --color-accent: hsl(45, 80%, 50%);
   --color-main: #e9e9e9;
+  --color-cyan: #00d2ff;
+  --color-orange: #ff8c00;
+  --color-lime: #b3ff00;
+  --color-magenta: #bf00ff;
+  --color-pink: #ff0098;
+  --color-red: #ff1a44;
 
-
-  --spacing-sm: .3rem;
+  --spacing-sm: 0.3rem;
   --spacing-md: 1rem;
 
-
-  --text-sm: .75rem;
-  --text-head: 2rem;
+  --text-sm: 0.75rem;
+  --text-aside: 1.1rem;
   --text-related: 1.3rem;
+  --text-content: 1.35rem;
+  --text-title: 1.8rem;
+  --text-head: 2rem;
   --text-highlight: 2.3rem;
 
-
   --font-main: Montserrat;
-  --font-second: "Source Sans 3";
+  --font-second: 'Source Sans 3';
   --font-hollow: 'Avalon';
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(20px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  --animate-slideIn: slideIn 500ms ease-out 2s forwards;
 }
 
+@property --via-pos {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --via-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: transparent;
+}
 
 @layer base {
   body {
@@ -46,7 +71,14 @@
 }
 
 @layer components {
+  /** Button components */
 
+  .btn-primary {
+    @apply bg-primary text-main text-content;
+  }
+  .btn-secondary {
+    @apply border-3 border-primary text-content;
+  }
 
   /** Navbar Section */
   .nav-bar {
@@ -58,7 +90,7 @@
              font-second;
 
       &:hover {
-        @apply bg-black/3 backdrop-blur-xs ;
+        @apply bg-black/3 backdrop-blur-xs;
       }
 
       & .nav-menu-btn {
@@ -67,9 +99,7 @@
     }
 
     & .start-study-btn {
-      @apply p-[.6em] text-[min(3vw,25px)] rounded-full font-black
-             hover:brightness-115 transition-[filter] duration-500
-             ease-out m-0.5 border-2 border-primary font-main cursor-pointer;
+      @apply font-black uppercase text-aside lg:text-content;
     }
 
     & .nav-links {
@@ -88,25 +118,117 @@
              items-center whitespace-nowrap;
 
         &:hover {
-          @apply bg-black/2 backdrop-blur-sm; 
+          @apply bg-black/10 backdrop-blur-sm brightness-115;
         }
       }
     }
   }
 
+  /** Hero Section */
+
   .banner {
-    @apply w-[min(50vw,900px)] bg-secondary absolute 
+    @apply w-[clamp(250px,35vw,600px)] bg-secondary absolute 
            rounded-b-full -top-100 ml-2 flex justify-center select-none -z-10
            transition-all duration-500 ease-out;
   }
 
+  .aside-config {
+    @apply opacity-100 -translate-x-[55vw] sm:-translate-x-[55vw] md:-translate-x-[60vw] 
+           lg:-translate-x-[55vw] xl:-translate-x-[55vw];
+  }
+
   .aside-content {
     @apply w-[clamp(300px,70vw,600px)] rounded-[50px] absolute 
-           -right-[50vw] mt-10 transition-all
-           duration-700 ease-out bg-linear-to-br from-gray-700/45 from-40% to-primary/5
+           -right-[50vw] mt-10 transition-all p-6
+           duration-700 ease-out bg-linear-to-br from-gray-700/50 from-40% to-primary/5
            backdrop-blur-lg shadow-[5px_5px_5px_#03092020];
 
+    background-image: url('./assets/texture.svg');
 
-    background-image: url("./assets/texture.svg");
+    & .aside-heading {
+      @apply text-head font-black items-center w-fit flex-wrap flex;
+
+      & span {
+        @apply bg-linear-150 from-[#17d8db] from-20% to-[#ff9616] 
+               bg-clip-text text-transparent;
+      }
+    }
+  }
+
+  .call-to-action {
+    @apply absolute p-5 -bottom-[clamp(200px,25vw,250px)] justify-end 
+           flex flex-wrap gap-10 right-0 w-[clamp(110px,50vw,900px)]
+           lg:gap-10 xl:gap-20;
+
+    @variant md {
+      @apply gap-5 justify-center;
+    }
+
+    & button {
+      @apply -right-[50vw];
+    }
+
+    & .register-btn {
+      transform-style: preserve-3d;
+
+      @apply bg-linear-150 from-primary to-main/50 relative lg:text-title 
+             xl:text-head transition-all duration-200 ease-out font-bold 
+             md:text-related w-[clamp(170px,20vw,400px)] animate-slideIn
+             ;
+
+      &::before {
+        @apply content-[''] absolute inset-0 bg-primary rounded-full;
+
+        transform: translateZ(-1px);
+        z-index: -1;
+      }
+    }
+
+    & .discover-btn {
+      @apply font-bold lg:text-title md:text-related xl:text-head relative
+             w-[clamp(170px,20vw,400px)];
+    }
+  }
+
+  /** Features Section */
+
+  .feat-content {
+    --via-pos: 0%;
+    --via-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+
+    transition: --via-pos 150ms ease-in-out, --via-color 150ms ease-in-out,
+      transform 300ms ease-out, border-color 300ms ease-out,
+      box-shadow 300ms ease-out;
+
+    @apply w-[clamp(200px,35vw,300px)] h-[clamp(200px,35vw,300px)]
+           rounded-[30px] border-2 border-primary bg-linear-120
+           from-primary/20 via-(--via-color) via-(percentage:--via-pos) 
+           to-primary/20 flex flex-col items-center justify-center relative;
+
+    &:hover,
+    &:active {
+      --via-color: rgba(255, 255, 255, 0.747);
+      --via-pos: 70%;
+
+      transform: translateY(-0.75rem);
+      border-color: color-mix(in srgb, var(--feat-color), transparent 40%);
+      box-shadow: 0 0 20px
+        color-mix(in srgb, var(--feat-color), transparent 50%);
+    }
+
+    &::before {
+      @apply absolute inset-0 -z-1 content-[''] rounded-[27px]
+             opacity-60;
+      background-image: url('./assets/texture.svg');
+    }
+
+    & h3 {
+      @apply text-highlight font-black text-(--feat-color) 
+              [text-shadow:0_0_50px_var(--feat-color)];
+    }
+
+    & p {
+      @apply text-content font-bold;
+    }
   }
 }

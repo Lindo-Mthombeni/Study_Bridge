@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Logo from '/logo.png'
 import { Menu, X } from 'lucide-react'
+import { Button } from './build/Buttons'
 
 interface NavbarProps {
   onNavigate: (section: string) => void
@@ -14,9 +15,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
   const navRef = useRef<HTMLDivElement>(null)
 
   const navLinks = [
-    { id: 'home', label: 'Home', },
-    { id: 'services', label: 'Services', },
-    { id: 'about_us', label: 'About Us', }
+    { id: 'home', label: 'Home' },
+    { id: 'services', label: 'Services' },
+    { id: 'about_us', label: 'About Us' }
   ]
 
   useEffect(() => {
@@ -90,7 +91,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
         ))}
       </div>
       <div className='flex mx-5'>
-        <button className='start-study-btn'>START STUDYING</button>
+        <Button
+          variant='secondary'
+          text='Start studying'
+          additionalStyles='start-study-btn'
+        />
       </div>
     </nav>
   )
