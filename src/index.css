@@ -219,7 +219,6 @@
     &::before {
       @apply absolute inset-0 -z-1 content-[''] rounded-[27px]
              opacity-60;
-      background-image: url('./assets/texture.svg');
     }
 
     & h3 {
