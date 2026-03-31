@@ -60,7 +60,7 @@ export const Hero: React.FC = () => {
         <div className='text-main text-content pt-0 font-semibold'>
           Access study notes, practice quizzes, and past exam papers aligned
           with the South African curriculum. Bridging students to success, for
-          free.{delay}
+          free.{delay}true
         </div>
         <div className='call-to-action'>
           <Button
