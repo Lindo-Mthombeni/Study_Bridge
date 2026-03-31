@@ -4,7 +4,7 @@ import Logo from '/logo.png'
 
 export const Hero: React.FC = () => {
 
-  const delay = 2000;
+  const delay = 1200;
   const [animate, setAnimate] = useState(() => {
     // if (typeof window !== 'undefined') {
     //   return !!sessionStorage.getItem('animated')
