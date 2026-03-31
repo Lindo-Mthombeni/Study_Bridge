@@ -118,7 +118,7 @@
              items-center whitespace-nowrap;
 
         &:hover {
-          @apply bg-black/10 backdrop-blur-sm brightness-115;
+          @apply bg-black/10 brightness-115;
         }
       }
     }
