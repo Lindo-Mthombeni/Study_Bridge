@@ -202,8 +202,8 @@
 
     @apply w-[clamp(200px,35vw,300px)] h-[clamp(200px,35vw,300px)]
            rounded-[30px] border-2 border-primary bg-linear-120
-           from-primary/20 via-(--via-color) via-(percentage:--via-pos) 
-           to-primary/20 flex flex-col items-center justify-center relative;
+           from-primary/10 via-(--via-color) via-(percentage:--via-pos) 
+           to-primary/10 flex flex-col items-center justify-center relative;
 
     &:hover,
     &:active {
