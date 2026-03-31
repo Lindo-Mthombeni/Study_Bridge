@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Logo from '/logo.png'
 
 export const Hero: React.FC = () => {
+
+  const delay = 2000;
   const [animate, setAnimate] = useState(() => {
     // if (typeof window !== 'undefined') {
     //   return !!sessionStorage.getItem('animated')
@@ -22,7 +24,7 @@ export const Hero: React.FC = () => {
 
     setTimeout(() => {
         setAnimate(true)
-      }, 2000)
+      }, delay)
   }, [])
 
   return (
@@ -58,7 +60,7 @@ export const Hero: React.FC = () => {
         <div className='text-main text-content pt-0 font-semibold'>
           Access study notes, practice quizzes, and past exam papers aligned
           with the South African curriculum. Bridging students to success, for
-          free.
+          free.{delay}
         </div>
         <div className='call-to-action'>
           <Button
