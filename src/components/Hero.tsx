@@ -22,7 +22,7 @@ export const Hero: React.FC = () => {
 
     setTimeout(() => {
         setAnimate(true)
-      }, 300)
+      }, 500)
   }, [])
 
   return (
