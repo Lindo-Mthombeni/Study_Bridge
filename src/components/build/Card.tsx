@@ -5,35 +5,36 @@ function styleMerge(...styles: ClassValue[]) {
   return twMerge(clsx(...styles));
 }
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant: "primary" | "secondary";
   children: React.ReactNode;
   additionalStyles?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Card: React.FC<CardProps> = ({
   variant,
   children,
   additionalStyles,
   ...props
 }) => {
-  const baseStyles = "cursor-pointer rounded-full p-2 px-[1.2em]";
+  const baseStyles = "rounded-[50px] flex p-6";
 
   const variantStyles = {
-    primary: "btn-primary",
-    secondary: "btn-secondary",
+    primary: 'card-primary',
+    secondary: "card-secondary",
   };
 
   return (
-    <button
+    <div
       className={styleMerge(
         baseStyles,
         variantStyles[variant],
-        additionalStyles,
+        additionalStyles
       )}
       {...props}
     >
       {children}
-    </button>
+    </div>
   );
 };

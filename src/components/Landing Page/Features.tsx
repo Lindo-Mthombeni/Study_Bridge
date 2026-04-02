@@ -8,7 +8,7 @@ export const Features: React.FC = () => {
 
   return (
     <aside
-      className='flex items-center justify-end flex-col mt-20'
+      className='flex items-center justify-end flex-col mt-40 mb-70'
     >
       <div className='flex flex-wrap justify-evenly gap-10'>
         {features.map((feature, index) => {

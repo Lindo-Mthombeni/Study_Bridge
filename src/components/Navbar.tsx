@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
       <div className='flex mx-5'>
         <Button
           variant='secondary'
-          text='Start studying'
+          children='Start studying'
           additionalStyles='start-study-btn'
         />
       </div>
