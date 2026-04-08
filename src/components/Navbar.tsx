@@ -64,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
           />
         </div>
       </div>
-      <div onClick={() => onNavigate('home')} className='m-sm grow'>
+      <div onClick={() => onNavigate('home')} className='m-sm grow text-dark-main'>
         <button className='flex items-center gap-1 text-sm font-black'>
           <img src={Logo} alt='StudyBridge' className='h-7 rounded-full' />
           StudyBridge
@@ -91,6 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, active }) => {
         ))}
       </div>
       <div className='flex mx-5'>
+        {/** Children looks weird but its meant to take any text or html element */}
         <Button
           variant='secondary'
           children='Start studying'

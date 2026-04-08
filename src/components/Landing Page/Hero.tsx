@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Logo from '/logo.png';
 
 export const Hero: React.FC = () => {
-  
+
   const [animate, setAnimate] = useState(() => {
     const animationStatusCheck = sessionStorage.getItem("slideIn")
     return animationStatusCheck === "slided" ? true : false
@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
 
 
   return (
-    <section className='h-225 relative'>
+    <section className='h-screen relative'>
       <div
         className={`banner ${
           animate ? 'h-[clamp(1250px,155vw,1300px)]' : 'h-[min(170vw,1200px)]'

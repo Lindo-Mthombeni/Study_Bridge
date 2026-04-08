@@ -1,141 +1,116 @@
-import {
-  Calculator,
-  FlaskConical,
-  Dna,
-  BadgeDollarSign,
-  Briefcase,
-  Languages,
-  Globe,
-  History,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
+import { type JSX, useState, useEffect, useRef, memo } from "react";
+import { useItemObserver, useScrollTrigger } from "../build/Hooks";
+import { subjects, type SubjectData } from "./SubjectData";
+import { Squircle, ChevronRight, ArrowRight } from "lucide-react";
 import { Card } from "../build/Card.tsx";
 import { Button } from "../build/Buttons.tsx";
-import { Squircle } from "lucide-react";
 
-export const Subjects: React.FC = () => {
-  const subjects = [
-    {
-      subject: "Mathematics",
-      icon: <Calculator />,
-      color: "var(--color-cyan)",
-      text: (
-        <>
-          Solve for <span>𝑥</span> like a pro
-        </>
-      ),
-    },
-    {
-      subject: "Physical Science",
-      icon: <FlaskConical />,
-      color: "var(--color-orange)",
-      text: (
-        <>
-          Understand the <span>Scientific</span> Reasons
-        </>
-      ),
-    },
-    {
-      subject: "Life Sciences",
-      icon: <Dna />,
-      color: "var(--color-lime)",
-      text: (
-        <>
-          <span>Investigate</span> and Experiment
-        </>
-      ),
-    },
-    {
-      subject: "Accounting",
-      icon: <BadgeDollarSign />,
-      color: "var(--color-yellow)",
-      text: (
-        <>
-          Learn to keep track of <span>financial records</span>
-        </>
-      ),
-    },
-    {
-      subject: "Business Studies",
-      icon: <Briefcase />,
-      color: "var(--color-pink)",
-      text: (
-        <>
-          <span>Manage</span> resources and analyze markets
-        </>
-      ),
-    },
-    {
-      subject: "English",
-      icon: <Languages />,
-      color: "var(--color-magenta)",
-      text: (
-        <>
-          Build your <span>vocabulary</span> and language skills
-        </>
-      ),
-    },
-    {
-      subject: "Geography",
-      icon: <Globe />,
-      color: "var(--color-dark-cyan)",
-      text: (
-        <>
-          Explore the <span>world</span>
-        </>
-      ),
-    },
-    {
-      subject: "History",
-      icon: <History />,
-      color: "var(--color-red)",
-      text: (
-        <>
-          Dive Deeper into the <span>past </span>
-        </>
-      ),
-    },
-  ];
+interface SubjectItemProps {
+  subject: SubjectData;
+  index: number;
+}
+
+const SubjectItem = memo(({ subject, index }: SubjectItemProps) => {
+  const {
+    elementRef: subjectRef,
+    isObserved: subjectObserved,
+    transitionDone,
+    setTransitionDone,
+  } = useItemObserver<HTMLDivElement>(0.5);
 
   return (
+    <Card
+      variant="secondary"
+      ref={subjectRef}
+      onTransitionEnd={() => setTransitionDone(true)}
+      additionalStyles={`subject-card ${subjectObserved ? "opacity-100 scale-100" : "opacity-0 scale-60 translate-y-20"}`}
+      style={
+        {
+          "--subject-color": subject.color,
+          transitionDelay:
+            subjectObserved && !transitionDone ? `${index * 100}ms` : "0ms",
+        } as React.CSSProperties
+      }
+    >
+      <div className="grow shrink-0 flex flex-col gap-3">
+        <div className="relative h-25 w-25 rounded-full -left-3">
+          <div className="subject-icon">{subject.icon}</div>
+          <Squircle className="squircle-subject-config" />
+        </div>
+        <h2 className="font-black text-head">{subject.subject}</h2>
+        <p className="text-content">{subject.text}</p>
+      </div>
+      <hr className="border-t border-grey/70" />
+      <button className="explore-btn">
+        Explore <ChevronRight />
+      </button>
+    </Card>
+  );
+});
+
+function SubjectItems(): JSX.Element {
+  return (
+    <>
+      {subjects.map((subject, index) => (
+        <SubjectItem key={index} subject={subject} index={index} />
+      ))}
+    </>
+  );
+}
+
+function SubjectSection(): JSX.Element {
+  return (
     <section className="subjects-section">
-      <h1 className="text-lg font-black self-center">Popular Subjects</h1>
-      <p className="text-aside self-center mb-10">
+      <h1 className="text-lg md:text-xl font-black self-center">
+        Popular Subjects
+      </h1>
+      <p className="text-title self-center mb-10">
         CAPS-aligned study materials for all Grade 8-12 subjects, updated for
         the 2024 academic year
       </p>
       <div className="subjects">
-        {subjects.map((subject, index) => {
-          return (
-            <Card
-              variant="secondary"
-              key={index}
-              additionalStyles="subject-card"
-              style={
-                { "--subject-color": subject.color } as React.CSSProperties
-              }
-            >
-              <div className="grow shrink-0 flex flex-col gap-3">
-                <div className="relative h-25 w-25 rounded-full -left-3">
-                  <div className="subject-icon">{subject.icon}</div>
-                  <Squircle className="squircle-subject-config" />
-                </div>
-
-                <h2 className="font-black text-related">{subject.subject}</h2>
-                <p className="text-content">{subject.text}</p>
-              </div>
-              <hr className="border-t border-grey/70" />
-              <button className="explore-btn">
-                Explore <ChevronRight />
-              </button>
-            </Card>
-          );
-        })}
+        <SubjectItems />
       </div>
       <Button variant="primary" additionalStyles="view-subjects-btn">
         View all subjects <ArrowRight />
       </Button>
     </section>
+  );
+}
+
+export const Subjects: React.FC = () => {
+  const { anchorRef, isTriggered } = useScrollTrigger();
+  const [measuredHeight, setMeasuredHeight] = useState(0);
+  const measureRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (measureRef.current) {
+      setMeasuredHeight(measureRef.current.offsetHeight);
+    }
+  }, []);
+
+  return (
+    <>
+      {!isTriggered && (
+        <div
+          ref={measureRef}
+          style={{
+            position: "absolute",
+            visibility: "hidden",
+            pointerEvents: "none",
+            top: "-9999px",
+            width: "100%",
+          }}
+        >
+          <SubjectSection />
+        </div>
+      )}
+      <div ref={anchorRef} className="h-1 w-full mt-20 invisible" />
+      {isTriggered ? (
+        <SubjectSection />
+      ) : (
+        <div style={{ height: measuredHeight }} />
+      )}
+    </>
   );
 };

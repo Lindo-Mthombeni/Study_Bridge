@@ -28,6 +28,13 @@
   --color-red: #ff1a44;
   --color-grey: #646464;
 
+  /** Dark Mode */
+  --color-dark-main: #e8e8e8e6;
+  --color-dark-background: hsl(0, 0%, 0%);
+  --color-dark-bg-secondary: hsl(0, 0%, 5%);
+  --color-dark-bg-light: hsl(0, 0%, 10%);
+  --color-dark-border: hsla(0, 0%, 50%, 0.5);
+
   --spacing-sm: 0.3rem;
   --spacing-md: 1rem;
 
@@ -39,11 +46,36 @@
   --text-head: 2rem;
   --text-highlight: 2.3rem;
   --text-lg: 3rem;
+  --text-xl: 4.1rem;
 
   --font-main: Montserrat;
   --font-second: "Source Sans 3";
   --font-hollow: "Avalon";
 }
+
+
+
+
+/** ----------------- Utilities ------------------- */
+ /* @utility dark-btn-secondary{
+  @apply border-dark-border border-2 text-dark-main;
+}
+
+@utility border-glow {
+  @apply relative p-[1px] rounded-2xl overflow-hidden;
+  
+ 
+  &::after {
+    content: "";
+    @apply absolute inset-[1px] bg-dark-bg-secondary rounded-[inherit] -z-1;
+  }
+
+  background: transparent; 
+} 
+ */
+
+
+
 
 @property --via-pos {
   syntax: "<percentage>";
@@ -65,7 +97,8 @@
 
 @layer base {
   body {
-    @apply font-main relative overflow-x-clip bg-background text-primary;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -78,7 +111,7 @@
     @apply bg-primary text-main text-content;
   }
   .btn-secondary {
-    @apply border-3 border-primary text-content;
+    @apply border-3 border-primary text-content backdrop-blur-lg;
   }
 
   /** Card Components */
@@ -87,7 +120,13 @@
     @apply shadow-[5px_5px_10px_color-mix(in_srgb,black,transparent_75%)];
   }
   .card-secondary {
-    @apply border-2 border-primary;
+    @apply border-3 border-primary;
+  }
+
+  /** ----------Hover Gradient ------------- */
+
+  .hover-gradient {
+    @apply h-30 w-30 fixed bg-[#b3b3b3] rounded-full blur-[30px];
   }
 
   /** ------------- Navbar Section --------------- */
@@ -104,13 +143,17 @@
       }
 
       & .nav-menu-btn {
-        @apply absolute transition-all duration-200 ease-out;
+        @apply absolute transition-all duration-200 ease-out stroke-dark-main;
       }
     }
 
     & .start-study-btn {
       @apply font-black uppercase text-aside lg:text-content;
     }
+
+    /* & .start-study-btn {
+      @apply dark:dark-btn-secondary;
+    } */
 
     & .nav-links {
       @apply hidden md:flex relative justify-evenly gap-3 w-[min(40vw,400px)]
@@ -134,7 +177,7 @@
     }
   }
 
-  /** ------------ Hero Section ------------ 525px 110vw 2200px*/
+  /** ------------ Hero Section ------------ */
 
   .banner {
     @apply w-[clamp(250px,35vw,600px)] bg-secondary absolute rounded-b-full -top-100 ml-2 
@@ -209,6 +252,10 @@
       @apply font-bold lg:text-title md:text-related xl:text-head relative
              w-[clamp(170px,20vw,400px)] transition-all duration-600 ease-out;
     }
+
+    /* & .discover-btn {
+      @apply dark:text-dark-main dark:border-dark-main;
+    } */
   }
 
   /** ------------- Features Section --------------- */
@@ -220,14 +267,14 @@
     transition:
       --via-pos 150ms ease-in,
       --via-color 150ms ease-in-out,
-      transform 300ms ease-out,
-      border-color 300ms ease-out,
-      box-shadow 300ms ease-out;
+      all 300ms ease-out;
 
-    @apply w-[clamp(200px,35vw,300px)] h-[clamp(200px,35vw,300px)]
-           rounded-[30px] border-2 border-primary bg-linear-120
-           from-primary/10 via-(--via-color) via-(percentage:--via-pos) 
-           to-primary/10 flex flex-col items-center justify-center relative;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+
+    @apply bg-linear-120 from-primary/10 via-(--via-color) auto-rows-[1fr]
+           via-(percentage:--via-pos) to-primary/10 flex flex-col items-center 
+           justify-center relative select-none;
 
     &:hover,
     &:active {
@@ -246,14 +293,15 @@
     }
 
     & h3 {
-      @apply text-highlight font-black text-(--feat-color) 
-              [text-shadow:0_0_50px_var(--feat-color)];
+      @apply font-black text-(--feat-color) text-lg lg:text-xl
+             [text-shadow:0_0_50px_color-mix(in_srgb,var(--feat-color),transparent_40%)];
     }
 
     & p {
-      @apply text-content font-bold;
+      @apply text-title font-bold;
     }
   }
+
   /** --------- Resorces Section ----------- */
 
   .resources {
@@ -287,7 +335,7 @@
     @apply p-6 flex flex-col gap-5 my-20;
 
     & .subjects {
-      @apply grid mt-20 grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-10 auto-rows-[1fr];
+      @apply grid mt-20 grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-10 auto-rows-[1fr];
 
       & .subject-card {
         @apply gap-3 flex-col transition-all duration-300 ease-out;
@@ -328,31 +376,33 @@
 
     .view-subjects-btn {
       @apply flex w-fit items-center gap-5 mt-10 font-black transition-all
-             duration-200 ease-out hover:gap-30;
+             duration-200 ease-out hover:gap-30 md:text-title;
     }
   }
 
   /** --------- Call to Action --------- */
 
   .call-to-action-card {
-    @apply flex-col gap-10 h-125 py-30 mx-auto w-[clamp(450px,50vw,700px)]
-           bg-linear-to-br from-cyan via-orange to-pink justify-evenly;
+    @apply flex-col basis-0 p-15 gap-10 h-125 py-30 mx-auto w-[clamp(475px,65vw,800px)]
+           bg-linear-to-br from-cyan via-orange to-pink justify-evenly
+           transition-all duration-500 ease-out;
 
     & .call-to-action-card-btn {
       @apply flex items-center gap-15 w-fit transition-all
-             duration-200 ease-out font-black lg:hover:gap-30;
+             duration-200 ease-out font-black lg:hover:gap-40;
     }
   }
-
+  /** ------------ Footer Section ------------ */
   .footer {
     @apply bg-primary/30 px-5 mt-20 min-h-210 md:px-10 md:min-h-120 
              pt-30;
 
     & .footer-top {
-      @apply flex flex-col justify-evenly gap-20 md:flex-row md:flex-wrap;
+      @apply flex flex-col justify-evenly gap-30 
+             md:flex-row md:flex-wrap mb-10;
 
       & .footer-logo-container {
-        @apply flex gap-4 max-w-200;
+        @apply flex gap-4 max-w-200 items-center;
 
         & img {
           @apply w-25 rounded-[30px] shrink-0 h-25;
@@ -360,12 +410,13 @@
       }
 
       & h3 {
-        @apply font-extrabold text-grey;
+        @apply font-extrabold text-grey text-title uppercase;
       }
 
       & .study-footer-link,
       & .account-footer-link {
-        @apply transition-all duration-300 ease-in w-fit;
+        @apply transition-all duration-300 ease-in w-fit text-content my-2 
+               md:my-3;
       }
 
       & .study-footer-link {
@@ -384,18 +435,19 @@
     }
 
     & .footer-bottom {
-      @apply flex flex-wrap gap-5 mb-10;
+      @apply flex flex-wrap gap-10 mb-10;
 
       & .footer-bottom-links {
-        @apply flex justify-around mt-10 grow px-5 gap-3 sm:gap-10;
+        @apply flex justify-around text-aside mt-10 grow px-5 gap-3 sm:gap-10;
 
         & button {
-          @apply hover:text-white/60 transition-all duration-100 ease-in;
+          @apply hover:text-white/60 active:text-white/60 transition-all 
+                 duration-100 ease-in;
         }
       }
 
       & p {
-        @apply mt-3 mx-2 md:mt-10 md:mx-10;
+        @apply mx-2;
       }
     }
   }

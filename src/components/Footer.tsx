@@ -24,15 +24,15 @@ export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <section className="footer-top">
-        <div className='footer-logo-container'>
+        <div className="footer-logo-container">
           <img src={Logo} alt="Study Bridge Logo" />
-          <p className='text-aside grow-0'>
+          <p className="text-aside grow-0">
             StudyBridge provides equal access to curriculum-aligned educational
             materials for every South African student, for free
           </p>
         </div>
         <div className="flex flex-col gap-3 w-full max-w-100">
-          <h3>STUDY</h3>
+          <h3>Study</h3>
           <hr />
           {studyLinks.map((studyLink, index) => {
             return (
@@ -74,18 +74,16 @@ export const Footer: React.FC = () => {
       <section className="footer-bottom">
         <div className="footer-bottom-links">
           {footerBottomLinks.map((footerBottomLink, index) => {
-            return (
-              <button key={index}>
-                {footerBottomLink.name}
-              </button>
-            );
+            return <button key={index}>{footerBottomLink.name}</button>;
           })}
         </div>
-        <p>
-          &copy; {new Date().getFullYear()} StudyBridge. Bridging Students to
-          success
-        </p>
-        <p>All rights reserved</p>
+        <div className="mt-10">
+          <p>
+            &copy; {new Date().getFullYear()} StudyBridge. Bridging Students to
+            success
+          </p>
+          <p>All rights reserved</p>
+        </div>
       </section>
     </footer>
   );
