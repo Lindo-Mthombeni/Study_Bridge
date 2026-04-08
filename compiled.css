@@ -316,14 +316,56 @@
   .h-25 {
     height: calc(var(--spacing) * 25);
   }
+  .h-\[20vw\] {
+    height: 20vw;
+  }
+  .h-\[50vh\] {
+    height: 50vh;
+  }
+  .h-\[50vw\] {
+    height: 50vw;
+  }
+  .h-\[70vw\] {
+    height: 70vw;
+  }
   .h-\[80vh\] {
     height: 80vh;
+  }
+  .h-\[80vw\] {
+    height: 80vw;
+  }
+  .h-\[90vh\] {
+    height: 90vh;
+  }
+  .h-\[90vw\] {
+    height: 90vw;
+  }
+  .h-\[95vh\] {
+    height: 95vh;
+  }
+  .h-\[100vh\] {
+    height: 100vh;
+  }
+  .h-\[800px\] {
+    height: 800px;
+  }
+  .h-\[clamp\(800px\,80vw\,90vh\)\] {
+    height: clamp(800px, 80vw, 90vh);
   }
   .h-\[clamp\(1250px\,155vw\,1300px\)\] {
     height: clamp(1250px, 155vw, 1300px);
   }
   .h-\[min\(170vw\,1200px\)\] {
     height: min(170vw, 1200px);
+  }
+  .h-\[min\(500px\,50vh\)\] {
+    height: min(500px, 50vh);
+  }
+  .h-\[min\(700px\,50vh\)\] {
+    height: min(700px, 50vh);
+  }
+  .h-\[min\(1200px\,50vh\)\] {
+    height: min(1200px, 50vh);
   }
   .h-screen {
     height: 100vh;
