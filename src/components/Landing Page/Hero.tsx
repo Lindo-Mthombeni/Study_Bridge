@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
 
 
   return (
-    <section className='h-screen relative'>
+    <section className='h-[80vh] relative'>
       <div
         className={`banner ${
           animate ? 'h-[clamp(1250px,155vw,1300px)]' : 'h-[min(170vw,1200px)]'
